@@ -1,8 +1,8 @@
 package com.example.demo;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 public class LessonsController {
 
@@ -22,6 +22,13 @@ public class LessonsController {
         return this.repository.save(lesson);
     }
 
+    @GetMapping("/lessons/{id}")
+    public Optional<Lesson> getLessonById(@RequestParam Long id) {
+        return this.repository.findById(id);
+    }
 
-
+    @DeleteMapping("/lessons/{id}")
+    public void deleteById(@RequestParam Long id) {
+        this.repository.deleteById(id);
+    }
 }
